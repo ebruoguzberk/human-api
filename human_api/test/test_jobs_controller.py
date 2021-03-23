@@ -170,26 +170,26 @@ class TestJobsController(BaseTestCase):
                                     content_type='application/json')
         self.assert200(response, 'Response body is: ' + response.data.decode('utf-8'))
 
-    def test_store_job_intermediate_results_job(self):
-        """Test case for store_job_intermediate_results_job
-
-        Store intermediate results to S3 for the given escrow
-        """
-        results_url = f"file://{RESULTS_PATH}"
-        job = Job({
-            "gas_payer": GAS_PAYER,
-            "gas_payer_priv": GAS_PAYER_PRIV
-        }, manifest, FACTORY_ADDRESS)
-        job.launch(REP_ORACLE_PUB_KEY)
-        job.setup()
-        body = StoreJobIntermediateResultsBody(GAS_PAYER, GAS_PAYER_PRIV, job.job_contract.address,
-                                               REP_ORACLE_PUB_KEY.decode("utf-8"), results_url)
-        response = self.client.open('/job/storeIntermediateResults',
-                                    method='POST',
-                                    data=json.dumps(body),
-                                    content_type='application/json')
-        self.assert200(response, 'Response body is: ' + response.data.decode('utf-8'))
-        self.assertTrue(json.loads(response.data.decode('utf-8')).get("success", False))
+    # def test_store_job_intermediate_results_job(self):
+    #     """Test case for store_job_intermediate_results_job
+    #
+    #     Store intermediate results to S3 for the given escrow
+    #     """
+    #     results_url = f"file://{RESULTS_PATH}"
+    #     job = Job({
+    #         "gas_payer": GAS_PAYER,
+    #         "gas_payer_priv": GAS_PAYER_PRIV
+    #     }, manifest, FACTORY_ADDRESS)
+    #     job.launch(REP_ORACLE_PUB_KEY)
+    #     job.setup()
+    #     body = StoreJobIntermediateResultsBody(GAS_PAYER, GAS_PAYER_PRIV, job.job_contract.address,
+    #                                            REP_ORACLE_PUB_KEY.decode("utf-8"), results_url)
+    #     response = self.client.open('/job/storeIntermediateResults',
+    #                                 method='POST',
+    #                                 data=json.dumps(body),
+    #                                 content_type='application/json')
+    #     self.assert200(response, 'Response body is: ' + response.data.decode('utf-8'))
+    #     self.assertTrue(json.loads(response.data.decode('utf-8')).get("success", False))
 
     def test_bulk_payout_job(self):
         """Test case for bulk_payout_job
