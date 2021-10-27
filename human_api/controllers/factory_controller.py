@@ -8,8 +8,7 @@ from human_api.models.error_parameter_response import ErrorParameterResponse  # 
 from human_api.models.factory_create_body import FactoryCreateBody  # noqa: E501
 from human_api.models.job_list_response import JobListResponse  # noqa: E501
 from human_api.models.string_data_response import StringDataResponse  # noqa: E501
-from human_api.util import _binary_launch_search
-from hmt_escrow.eth_bridge import get_factory as eth_bridge_factory, deploy_factory, get_w3
+from hmt_escrow.eth_bridge import get_factory as eth_bridge_factory, deploy_factory,get_factory_block_number
 
 
 def get_factory(address, gas_payer, gas_payer_private):  # noqa: E501
@@ -27,9 +26,9 @@ def get_factory(address, gas_payer, gas_payer_private):  # noqa: E501
     :rtype: JobListResponse
     """
     # Ethereum Rinkeby
-    w3 = get_w3()
     try:
-        factory_launch = _binary_launch_search(w3, address, 0, w3.eth.blockNumber)
+        # factory_launch = _binary_launch_search(w3, address, 0, w3.eth.blockNumber)
+        factory_launch = get_factory_block_number(address)
         factory = eth_bridge_factory(address)
         escrows = []
         for event in factory.events.Launched.createFilter(
@@ -47,7 +46,7 @@ def new_factory(body=None):  # noqa: E501
 
     Creates a new factory and returns the address # noqa: E501
 
-    :param body: 
+    :param body:
     :type body: dict | bytes
 
     :rtype: StringDataResponse

@@ -1582,7 +1582,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
 
 [[package]]
 name = "retry"
-version = "0.9.2"
+version = "0.9.3"
 description = "Easy to use retry decorator."
 category = "main"
 optional = false
