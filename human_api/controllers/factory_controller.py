@@ -8,7 +8,7 @@ from human_api.models.error_parameter_response import ErrorParameterResponse  # 
 from human_api.models.factory_create_body import FactoryCreateBody  # noqa: E501
 from human_api.models.job_list_response import JobListResponse  # noqa: E501
 from human_api.models.string_data_response import StringDataResponse  # noqa: E501
-from hmt_escrow.eth_bridge import get_factory as eth_bridge_factory, deploy_factory,get_factory_block_number
+from hmt_escrow.eth_bridge import get_factory as eth_bridge_factory, deploy_factory, get_factory_block_number
 
 
 def get_factory(address, gas_payer, gas_payer_private):  # noqa: E501
