@@ -17,7 +17,7 @@ services:
       - ./skale:/skale
 
   hmt-escrow:
-    image: skalenetwork/hmt-escrow:skale-0.9.2
+    image: skalenetwork/hmt-escrow:skale-0.9.4
     environment:
       - HMT_ETH_SERVER=wss://dappnet-api.skalenodes.com/v1/ws/rhythmic-sirius
       - GAS_LIMIT=6700000
